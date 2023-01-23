@@ -287,7 +287,7 @@ def beli_pizza(komp, pos, klub, name):
     if (komp=='Liga 2'):
         CREDIT_2 = "Liga 2 | Season 2022/23 | Min. 180 mins played"
     else:
-        CREDIT_2 = "Liga 1 | Season 2022/23 | Min. 720 mins played"
+        CREDIT_2 = "Liga 1 | Season 2022/23 | Min. 500 mins played"
 
     fig.text(0.515, 0.02, f"{CREDIT_1}\n{CREDIT_2}", size=9,
              color="#FAFAFA", ha="center")
