@@ -28,7 +28,7 @@ pitch = VerticalPitch(half=True, pitch_type='wyscout',
 def shotmaplot(data):
     goals = data[data['Event']=='Goal']
     ngoals = data[data['Event']!='Goal']
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(dpi=500)
     fig.patch.set_facecolor('#0E1117')
     pitch.draw(ax=ax)
     ax.scatter(ngoals['Y'], ngoals['X'], s=ngoals.xG*600,
@@ -48,7 +48,7 @@ def get_metric(data):
 
 gw = max(data3['GW'])     
 def xgaplot(team):
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(dpi=500)
     fig.patch.set_facecolor('#0E1117')
     ax.set_facecolor('#0E1117')
     auxdata = data3[data3['Team'] == team]
@@ -317,7 +317,7 @@ def beli_pizza(komp, pos, klub, name):
                       transform=fig.transFigure, figure=fig)
         ])
     
-    plt.savefig('pizza.jpg')
+    plt.savefig('pizza.jpg', dpi=500)
     
     return fig
 
