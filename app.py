@@ -317,7 +317,7 @@ def beli_pizza(komp, pos, klub, name):
                       transform=fig.transFigure, figure=fig)
         ])
     
-    plt.savefig('/app/ligaindonesia2022/data/pizza.jpg', dpi=500)
+    plt.savefig('/app/ligaindonesia2022/data/pizza.jpg', dpi=500, bbox_inches='tight')
     
     return fig
 
