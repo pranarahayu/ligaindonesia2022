@@ -3,3 +3,4 @@ pandas
 mplsoccer
 matplotlib
 numpy
+openpyxl
