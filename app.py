@@ -383,18 +383,21 @@ with tab2:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
             f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team_pct']))
-            dfp = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
+            dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
+            dfp_x = pct1
         else:
             f_team = st.selectbox('Select Team', pd.unique(pct2_x['Team_pct']))
-            dfp = pct2[pct2['Team_pct']==f_team].reset_index(drop=True)
+            dfp_y = pct2[pct2['Team_pct']==f_team].reset_index(drop=True)
+            dfp_x = pct2
         all_teams = st.checkbox('Select All Teams')
     with f2:
         pos_filter = st.selectbox('Select Position', pd.unique(pct1['Position_pct']))
-        dfp_x = dfp[dfp['Position_pct']==pos_filter].reset_index(drop=True)
         if all_teams:
+          dfp = dfp_x[dfp_x['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
         else:
-          f_player = st.selectbox('Select Player', pd.unique(dfp_x['Name']))
+          dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
+          f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
     
     piz = beli_pizza(komp_filter, pos_filter, f_team, f_player)
     with f2:
