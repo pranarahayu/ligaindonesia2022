@@ -1,4 +1,4 @@
-streamlit==0.79.0
+streamlit
 pandas
 mplsoccer
 matplotlib
