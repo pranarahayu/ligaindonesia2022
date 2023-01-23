@@ -293,7 +293,7 @@ def beli_pizza(komp, pos, klub, name):
              color="#FAFAFA", ha="center")
              
     if (pos != 'Goalkeeper'):
-        fig.text(0.268, 0.935, "Goal Threat              Creativity              In Possession              Out of Possession",
+        fig.text(0.268, 0.935, "Goal Threat              Creativity             In Possession              Out of Possession",
                  size=10, color="#FAFAFA", va='center')
 
         fig.patches.extend([
