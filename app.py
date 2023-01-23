@@ -8,10 +8,10 @@ st.set_page_config(page_title='Liga Indonesia')
 st.header('Liga Indonesia 2022/23 Data and Statistics')
 st.markdown('Created by: Prana (@prxrhx on Twitter) | Data: Lapangbola.com')
 
-xgdata = pd.read_excel('xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
-pct1 = pd.read_excel('pct_rank_liga1.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
+xgdata = pd.read_excel('/data/xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
+pct1 = pd.read_excel('/data/pct_rank_liga1.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
 pct1_x = pct1[pct1['Team_pct']!='League Average']
-pct2 = pd.read_excel('pct_rank_liga2.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
+pct2 = pd.read_excel('/data/pct_rank_liga2.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
 pct2_x = pct2[pct2['Team_pct']!='League Average']
 
 temp = xgdata[['Team', 'xG', 'GW']]
