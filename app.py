@@ -395,6 +395,7 @@ with tab2:
         if all_teams:
           dfp = dfp_x[dfp_x['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
+          f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
         else:
           dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
