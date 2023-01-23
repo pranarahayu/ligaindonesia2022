@@ -382,17 +382,18 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            dfp = pct1
+            f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team_pct']))
+            dfp = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
         else:
-            dfp = pct2
+            f_team = st.selectbox('Select Team', pd.unique(pct2_x['Team_pct']))
+            dfp = pct2[pct2['Team_pct']==f_team].reset_index(drop=True)
     with f2:
         pos_filter = st.selectbox('Select Position', pd.unique(pct1['Position_pct']))
-    with f1:
         dfp = dfp[dfp['Position_pct']==pos_filter].reset_index(drop=True)
         f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
     
     piz = beli_pizza(komp_filter, pos_filter, f_team, f_player)
-    with f2:
+    with f1:
         with open('/app/ligaindonesia2022/data/pizza.jpg', 'rb') as img:
             fn = 'Pizza_'+f_player+'-'+f_team+'.jpg'
             btn = st.download_button(label="Download Radar", data=img,
