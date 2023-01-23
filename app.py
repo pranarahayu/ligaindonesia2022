@@ -317,7 +317,7 @@ def beli_pizza(komp, pos, klub, name):
                       transform=fig.transFigure, figure=fig)
         ])
     
-    plt.savefig('pizza.jpg', dpi=500)
+    plt.savefig('/app/ligaindonesia2022/data/pizza.jpg', dpi=500)
     
     return fig
 
@@ -395,7 +395,7 @@ with tab2:
     
     piz = beli_pizza(komp_filter, pos_filter, f_team, f_player)
     with f1:
-        with open('pizza.jpg', 'rb') as img:
+        with open('/app/ligaindonesia2022/data/pizza.jpg', 'rb') as img:
             fn = 'Pizza_'+f_player+'-'+f_team+'.jpg'
             btn = st.download_button(label="Download Radar", data=img,
                                      file_name=fn, mime="image/jpg")
