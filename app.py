@@ -397,7 +397,7 @@ with tab2:
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
           if len(dfp[dfp['Name']==f_player])==1:
             f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
-          else
+          else:
             f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[1]
         else:
           dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
