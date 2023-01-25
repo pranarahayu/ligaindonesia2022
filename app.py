@@ -9,7 +9,6 @@ st.header('Liga Indonesia 2022/23 Data and Statistics')
 st.markdown('Created by: Prana (@prxrhx on Twitter) | Data: Lapangbola.com')
 
 xgdata = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
-oppdata = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx').sort_values(by=['Opponent', 'Player']).reset_index(drop=True)
 pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
 pct1_x = pct1[pct1['Team_pct']!='League Average']
 pct2 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga2.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
@@ -383,7 +382,7 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            f_team = st.selectbox('Select Team', pd.unique(xgdata['Team']), key=1)
+            f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team_pct']))
             dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct1[pct1['Team_pct']!='League Average'].reset_index(drop=True)
         else:
@@ -396,10 +395,7 @@ with tab2:
         if all_teams:
           dfp = dfp_x[dfp_x['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
-          if len(dfp[dfp['Name']==f_player])==1:
-            f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
-          else:
-            f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[1]
+          f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
         else:
           dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
