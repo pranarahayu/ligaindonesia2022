@@ -9,6 +9,7 @@ st.header('Liga Indonesia 2022/23 Data and Statistics')
 st.markdown('Created by: Prana (@prxrhx on Twitter) | Data: Lapangbola.com')
 
 xgdata = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
+temporary = xgdata
 pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
 pct1_x = pct1[pct1['Team_pct']!='League Average']
 pct2 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga2.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
@@ -16,7 +17,7 @@ pct2_x = pct2[pct2['Team_pct']!='League Average']
 
 temp = xgdata[['Team', 'xG', 'GW']]
 forxg = temp.groupby(['Team', 'GW']).sum()
-temp = xgdata[['Opponent', 'xG', 'GW']].sort_values(by=['Team', 'Player']).reset_index(drop=True).rename(columns={'Opponent':'Team', 'xG':'xGA'})
+temp = xgdata[['Opponent', 'xG', 'GW']].rename(columns={'Opponent':'Team', 'xG':'xGA'})
 forxga = temp.groupby(['Team', 'GW']).sum()
 data3 = pd.merge(forxg, forxga, on=['Team', 'GW'], how='left').reset_index()
 
@@ -382,7 +383,7 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            f_team = st.selectbox('Select Team', pd.unique(temp['Team']))
+            f_team = st.selectbox('Select Team', pd.unique(temporary['Team']))
             dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct1[pct1['Team_pct']!='League Average'].reset_index(drop=True)
         else:
