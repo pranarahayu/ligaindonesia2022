@@ -382,7 +382,7 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team_pct']))
+            f_team = st.selectbox('Select Team', pd.unique(xgdata['Team']))
             dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct1[pct1['Team_pct']!='League Average'].reset_index(drop=True)
         else:
@@ -395,7 +395,10 @@ with tab2:
         if all_teams:
           dfp = dfp_x[dfp_x['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
-          f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
+          if len(dfp[dfp['Name']==f_player])==1:
+            f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
+          else
+            f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[1]
         else:
           dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
