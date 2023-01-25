@@ -382,7 +382,7 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            f_team = st.selectbox('Select Team', pd.unique(xgdata['Team']))
+            f_team = st.selectbox('Select Team', pd.unique(forxg['Team']))
             dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct1[pct1['Team_pct']!='League Average'].reset_index(drop=True)
         else:
