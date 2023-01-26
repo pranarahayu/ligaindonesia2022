@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title='Liga Indonesia')
 st.header('Liga Indonesia 2022/23 Data and Statistics')
-st.markdown('Created by: Prana (@prxrhx on Twitter) | Data: Lapangbola.com')
+st.markdown('Created by: Prana | Data: Lapangbola.com')
 
 xgdata = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
 pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_values(by=['Team_pct', 'Name']).reset_index(drop=True)
@@ -283,7 +283,7 @@ def beli_pizza(komp, pos, klub, name):
     fig.text(0.515, 0.953, "Percentile Rank vs League Average "+pos,
              size=11, ha="center", color="#FAFAFA")
 
-    CREDIT_1 = "Data: Lapangbola.com | Created by: @prxrhx"
+    CREDIT_1 = "Data: Lapangbola.com"
     if (komp=='Liga 2'):
         CREDIT_2 = "Liga 2 | Season 2022/23 | Min. 180 mins played"
     else:
@@ -377,7 +377,7 @@ with tab1:
 with tab2:
     tab2.subheader('Player\'s Performance Radar')
     with st.expander('Read Me!'):
-        st.write('This tab shows player performance radar based on the filters below. Minimum minutes played for Liga 1 is 720 mins and 180 mins for Liga 2. Players shown in the filter are the one that met that condition.')
+        st.write('This tab shows player performance radar based on the filters below. Minimum minutes played for Liga 1 is 500 mins and 180 mins for Liga 2. Players shown in the filter are the one that met that condition.')
     f1, f2 = st.columns(2)
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
