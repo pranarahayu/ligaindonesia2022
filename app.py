@@ -436,7 +436,7 @@ with tab3:
         co2.subheader('Style of Play')
         for col in auxdata[ps]:
             if (auxdata[col].isnull().values.any() == False):
-                if (co2=='PS3'):
+                if (col=='PS3'):
                     co2.markdown(':shield:'+' **'+list(auxdata[col])[0]+'**')
                 else:
                     co2.markdown(':crossed_swords:'+' **'+list(auxdata[col])[0]+'**')
