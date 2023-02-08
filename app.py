@@ -409,7 +409,7 @@ with tab2:
     st.pyplot(piz)
 
     
-    ds = pd.read_excel('desc.xlsx')
+ds = pd.read_excel('/app/ligaindonesia2022/data/desc.xlsx')
 ps = ['PS1', 'PS2', 'PS3', 'PS4']
 s = ['S1', 'S2', 'S3', 'S4']
 w = ['W1', 'W2', 'W3', 'W4']
