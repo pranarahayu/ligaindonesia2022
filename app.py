@@ -322,7 +322,7 @@ def beli_pizza(komp, pos, klub, name):
     return fig
 
 gw = max(xgdata['GW'])    
-tab1, tab2 = st.tabs(['xG and xGA', 'Player Radar'])
+tab1, tab2, tab3 = st.tabs(['xG and xGA', 'Player Radar', 'Team Characteristic'])
 
 with tab1:
     tab1.subheader('Expected Goal & Expected Goal Allowed')
@@ -407,3 +407,44 @@ with tab2:
             btn = st.download_button(label="Download Radar", data=img,
                                      file_name=fn, mime="image/jpg")
     st.pyplot(piz)
+
+    
+    ds = pd.read_excel('desc.xlsx')
+ps = ['PS1', 'PS2', 'PS3', 'PS4']
+s = ['S1', 'S2', 'S3', 'S4']
+w = ['W1', 'W2', 'W3', 'W4']
+        
+with tab3:
+    tab3.header('Team Characteristic')
+    fi1, fi2 = st.columns(2)
+    s1, s2 = st.columns(2)
+    
+    with fi1:
+        fteam = st.selectbox('Select Team', pd.unique(ds['Team']), key=1)
+        auxdata = ds[ds['Team']==fteam]
+    with s1:
+        co1 = st.container()
+        co1.subheader('Strengths')
+        for col in auxdata[s]:
+            if (auxdata[col].isnull().values.any() == False):
+                if (col=='S4'):
+                    co1.markdown(':shield:'+' **'+list(auxdata[col])[0]+'**')
+                else:
+                    co1.markdown(':crossed_swords:'+' **'+list(auxdata[col])[0]+'**')
+        
+        co2 = st.container()
+        co2.subheader('Style of Play')
+        for col in auxdata[ps]:
+            if (auxdata[col].isnull().values.any() == False):
+                if (co2=='PS3'):
+                    co2.markdown(':shield:'+' **'+list(auxdata[col])[0]+'**')
+                else:
+                    co2.markdown(':crossed_swords:'+' **'+list(auxdata[col])[0]+'**')
+    with s2:
+        st.subheader('Weaknesses')
+        for col in auxdata[w]:
+            if (auxdata[col].isnull().values.any() == False):
+                if (col=='W4'):
+                    st.markdown(':shield:'+' **'+list(auxdata[col])[0]+'**')
+                else:
+                    st.markdown(':crossed_swords:'+' **'+list(auxdata[col])[0]+'**')
