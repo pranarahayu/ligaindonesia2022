@@ -102,7 +102,7 @@ def beli_pizza(komp, pos, klub, name):
     temp = pd.DataFrame()
     if (pos=='Forward'):
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Shots'] = round(datapizza['Shots_pct'])
         temp['Goals'] = round(datapizza['Goals_pct'])
@@ -126,7 +126,7 @@ def beli_pizza(komp, pos, klub, name):
         text_colors = ["#FAFAFA"] * 5 + ["#0E1117"] * 1 + ["#FAFAFA"] * 6
     elif (pos=='Attacking 10') or (pos=='Winger'):
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Shots'] = round(datapizza['Shots_pct'])
         temp['Goals'] = round(datapizza['Goals_pct'])
@@ -153,7 +153,7 @@ def beli_pizza(komp, pos, klub, name):
         text_colors = ["#FAFAFA"] * 5 + ["#0E1117"] * 1 + ["#FAFAFA"] * 6
     elif (pos=='Midfielder'):
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Shots'] = round(datapizza['Shots_pct'])
         temp['Goals'] = round(datapizza['Goals_pct'])
@@ -176,7 +176,7 @@ def beli_pizza(komp, pos, klub, name):
         text_colors = ["#FAFAFA"] * 4 + ["#0E1117"] * 1 + ["#FAFAFA"] * 6
     elif (pos=='Fullback'):
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Shots'] = round(datapizza['Shots_pct'])
         temp['Goals'] = round(datapizza['Goals_pct'])
@@ -200,7 +200,7 @@ def beli_pizza(komp, pos, klub, name):
         text_colors = ["#FAFAFA"] * 3 + ["#0E1117"] * 1 + ["#FAFAFA"] * 8
     elif (pos=='Center Back'):
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Shots'] = round(datapizza['Shots_pct'])
         temp['Goals'] = round(datapizza['Goals_pct'])
@@ -221,7 +221,7 @@ def beli_pizza(komp, pos, klub, name):
         text_colors = ["#FAFAFA"] * 2 + ["#0E1117"] * 1 + ["#FAFAFA"] * 6
     else:
         temp['Name'] = datapizza['Name']
-        temp['Team'] = datapizza['Team_pct']
+        temp['Team'] = datapizza['Team']
 
         temp['Long Goal Kick %'] = round(datapizza['Long Goal Kick %_pct'])
         temp['Pass Accuracy'] = round(datapizza['Pass Accuracy_pct'])
@@ -382,11 +382,11 @@ with tab2:
     with f1:
         komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'])
         if (komp_filter=='Liga 1'):
-            f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team_pct']))
+            f_team = st.selectbox('Select Team', pd.unique(pct1_x['Team']))
             dfp_y = pct1[pct1['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct1[pct1['Team_pct']!='League Average'].reset_index(drop=True)
         else:
-            f_team = st.selectbox('Select Team', pd.unique(pct2_x['Team_pct']))
+            f_team = st.selectbox('Select Team', pd.unique(pct2_x['Team']))
             dfp_y = pct2[pct2['Team_pct']==f_team].reset_index(drop=True)
             dfp_x = pct2[pct2['Team_pct']!='League Average'].reset_index(drop=True)
         all_teams = st.checkbox('Select All Teams')
@@ -395,7 +395,7 @@ with tab2:
         if all_teams:
           dfp = dfp_x[dfp_x['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
-          f_team = list(dfp[dfp['Name']==f_player]['Team_pct'])[0]
+          f_team = list(dfp[dfp['Name']==f_player]['Team'])[0]
         else:
           dfp = dfp_y[dfp_y['Position_pct']==pos_filter].reset_index(drop=True)
           f_player = st.selectbox('Select Player', pd.unique(dfp['Name']))
