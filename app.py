@@ -10,9 +10,9 @@ st.markdown('Created by: Prana | Data: Lapangbola.com')
 
 xgdata = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx').sort_values(by=['Team', 'Player']).reset_index(drop=True)
 pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_values(by=['Team', 'Name']).reset_index(drop=True)
-pct1_x = pct1[pct1['Team_pct']!='League Average']
+pct1_x = pct1[pct1['Team']!='League Average']
 pct2 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga2.xlsx').sort_values(by=['Team', 'Name']).reset_index(drop=True)
-pct2_x = pct2[pct2['Team_pct']!='League Average']
+pct2_x = pct2[pct2['Team']!='League Average']
 
 temp = xgdata[['Team', 'xG', 'GW']]
 forxg = temp.groupby(['Team', 'GW']).sum()
