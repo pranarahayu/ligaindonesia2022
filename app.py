@@ -333,7 +333,7 @@ def player_list(pos, komp, arr_met):
     temp_full = listdata[metrik]
     temp_full['mean'] = round(temp_full.mean(axis=1),2)
     temp_full.insert(0, column='Name', value=listdata['Name'])
-    temp_full.insert(1, column='Team', value=listdata['Team_pct'])
+    temp_full.insert(1, column='Team', value=listdata['Team'])
     temp_full = temp_full.sort_values(by=['mean'], ascending=False).reset_index(drop=True)
     
     return temp_full
