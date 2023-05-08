@@ -13,7 +13,7 @@ pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_val
 pct1_x = pct1[pct1['Team']!='League Average']
 pct2 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga2.xlsx').sort_values(by=['Team', 'Name']).reset_index(drop=True)
 pct2_x = pct2[pct2['Team']!='League Average']
-mlist = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx')
+mlist = pd.read_excel('/app/ligaindonesia2022/data/metriklist.xlsx')
 
 temp = xgdata[['Team', 'xG', 'GW']]
 forxg = temp.groupby(['Team', 'GW']).sum()
