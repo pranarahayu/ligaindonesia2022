@@ -13,6 +13,7 @@ pct1 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga1.xlsx').sort_val
 pct1_x = pct1[pct1['Team']!='League Average']
 pct2 = pd.read_excel('/app/ligaindonesia2022/data/pct_rank_liga2.xlsx').sort_values(by=['Team', 'Name']).reset_index(drop=True)
 pct2_x = pct2[pct2['Team']!='League Average']
+mlist = pd.read_excel('/app/ligaindonesia2022/data/xGData.xlsx')
 
 temp = xgdata[['Team', 'xG', 'GW']]
 forxg = temp.groupby(['Team', 'GW']).sum()
@@ -322,7 +323,7 @@ def beli_pizza(komp, pos, klub, name):
     return fig
 
 gw = max(xgdata['GW'])    
-tab1, tab2, tab3 = st.tabs(['xG and xGA', 'Player Radar', 'Team Characteristic'])
+tab1, tab2, tab3, tab4 = st.tabs(['xG and xGA', 'Player Radar', 'Team Characteristic', 'Search'])
 
 with tab1:
     tab1.subheader('Expected Goal & Expected Goal Allowed')
@@ -448,3 +449,31 @@ with tab3:
                     st.markdown(':shield:'+' **'+list(auxdata[col])[0]+'**')
                 else:
                     st.markdown(':crossed_swords:'+' **'+list(auxdata[col])[0]+'**')
+
+with tab4:
+    tab4.subheader('Player Search')
+    ft1, ft3, ft2 = st.columns(3)
+    
+    with ft1:
+        pos_ft = st.selectbox('Select Position', pd.unique(pct1['Position_pct']), key='3')
+        
+    with ft3:
+        komp_filter = st.selectbox('Select League', ['Liga 1', 'Liga 2'], key='2')
+    
+    with ft2:
+        fmetrik = st.multiselect('Select Metric(s)', pd.unique(mlist['Metrik']))
+    
+    rec_p = player_list(pos_ft, komp_filter, fmetrik)
+    st.table(rec_p.head(10))
+    
+    @st.cache
+    def convert_df(df):
+        return df.to_csv().encode('utf-8')
+    csv = convert_df(rec_p.head(10))
+    
+    st.download_button(
+    label='Download Data',
+    data=csv,
+    file_name='Rekomendasi_Pemain.csv',
+    mime='text/csv',
+)
