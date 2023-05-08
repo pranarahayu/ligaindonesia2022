@@ -322,6 +322,22 @@ def beli_pizza(komp, pos, klub, name):
     
     return fig
 
+def player_list(pos, komp, arr_met):
+    if (komp == 'Liga 1'):
+        listdata = pct1_x
+    else:
+        listdata = pct2_x
+    
+    listdata = listdata[listdata['Position_pct']==pos].reset_index(drop=True)
+    metrik = arr_met
+    temp_full = listdata[metrik]
+    temp_full['mean'] = round(temp_full.mean(axis=1),2)
+    temp_full.insert(0, column='Name', value=listdata['Name'])
+    temp_full.insert(1, column='Team', value=listdata['Team_pct'])
+    temp_full = temp_full.sort_values(by=['mean'], ascending=False).reset_index(drop=True)
+    
+    return temp_full
+  
 gw = max(xgdata['GW'])    
 tab1, tab2, tab3, tab4 = st.tabs(['xG and xGA', 'Player Radar', 'Team Characteristic', 'Search'])
 
